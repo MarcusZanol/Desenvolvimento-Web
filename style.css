@@ -1,0 +1,140 @@
+/* ── Reset + base ─────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+  --bg-1:#0b132b;      /* fundo principal */
+  --bg-2:#1c2541;      /* blocos */
+  --ink:#e6e9ef;       /* texto */
+  --muted:#b8c1d1;     /* texto secundário */
+  --accent:#6fffe9;    /* cor de destaque */
+  --accent-2:#5bc0be;  /* hover */
+  --card:#141a32;      /* card do artigo */
+  --border:#26314f;    /* bordas sutis */
+  --shadow:rgba(0,0,0,.35);
+  --radius:14px;
+}
+
+html,body{ height:100%; }
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(1200px 600px at 10% -10%, #102045 0%, transparent 60%),
+              radial-gradient(1000px 500px at 110% 10%, #102c4f 0%, transparent 60%),
+              var(--bg-1);
+  line-height: 1.65;
+  padding: 28px 20px 40px;
+}
+
+/* ── Cabeçalho ───────────────────────────────────────────────────────────── */
+header{
+  max-width: 1100px;
+  margin: 0 auto 22px;
+  background: linear-gradient(180deg, var(--bg-2), #15213d);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px var(--shadow);
+  padding: 26px 22px;
+  text-align: center;
+}
+header h1{
+  font-size: clamp(26px, 3.2vw, 36px);
+  letter-spacing:.5px;
+  margin-bottom: 8px;
+}
+nav ul{ list-style:none; display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
+nav a{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  text-decoration:none;
+  color:var(--ink);
+  background: transparent;
+  border:1px solid transparent;
+  transition: border-color .2s, background-color .2s, color .2s, transform .1s;
+}
+nav a:hover{
+  border-color: var(--accent);
+  background: rgba(95, 255, 233, .08);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* ── Layout principal ────────────────────────────────────────────────────── */
+main{
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 22px;
+}
+
+/* ── Card do artigo ──────────────────────────────────────────────────────── */
+article{
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 36px var(--shadow);
+  padding: 26px 22px;
+}
+article h2{
+  color: var(--accent);
+  font-size: clamp(22px, 2.4vw, 30px);
+  margin-bottom: 10px;
+}
+article time{
+  display:inline-block;
+  font-size: 14px;
+  color:var(--muted);
+  background: rgba(95,255,233,.06);
+  border:1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-bottom: 14px;
+}
+article p{
+  color: var(--ink);
+  margin: 12px 0 16px;
+}
+figure{ margin:16px 0 8px; }
+figure img{
+  width:100%; height:auto; display:block;
+  border-radius: 10px;
+  border:1px solid var(--border);
+}
+figcaption{
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 8px;
+}
+
+/* ── Aside (card lateral) ───────────────────────────────────────────────── */
+aside{
+  background: var(--bg-2);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 26px var(--shadow);
+  padding: 20px;
+}
+aside h3{ color: var(--accent-2); margin-bottom: 10px; }
+aside ul{ padding-left: 18px; }
+aside a{
+  color: var(--ink);
+  text-underline-offset: 3px;
+  transition: color .2s;
+}
+aside a:hover{ color: var(--accent); }
+
+/* ── Rodapé ─────────────────────────────────────────────────────────────── */
+footer{
+  max-width: 1100px;
+  margin: 22px auto 0;
+  text-align:center;
+  color: var(--muted);
+  padding: 18px 10px;
+}
+
+/* ── Responsivo ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px){
+  main{ grid-template-columns: 1fr; }
+  aside{ order:-1; margin-bottom: 6px; }
+}
