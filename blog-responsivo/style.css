@@ -1,0 +1,127 @@
+/* Reset básico */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+  --bg: #0f172a;
+  --panel:#111827;
+  --card:#0b1227;
+  --ink:#e5e7eb;
+  --muted:#bfc7d6;
+  --accent:#60a5fa;
+  --accent-2:#38bdf8;
+  --border:#1f2937;
+  --shadow: rgba(0,0,0,.35);
+  --radius: 14px;
+  --maxw: 1100px;
+  --gap: 22px;
+}
+
+/* 1) GRID NO BODY → estrutura macro: header | main + aside | footer */
+body{
+  color: var(--ink);
+  background: var(--bg);
+  font-family: system-ui, Arial, sans-serif;
+  line-height: 1.65;
+
+  display: grid;                                 /* ← GRID */
+  grid-template-columns: 2fr 1fr;                /* duas colunas no desktop */
+  grid-template-rows: auto 1fr auto;             /* header, conteúdo, footer */
+  grid-template-areas:
+    "header header"
+    "main   aside"
+    "footer footer";
+  gap: var(--gap);
+
+  padding: 28px 20px 40px;
+  max-width: calc(var(--maxw) + 2 * 20px);
+  margin: 0 auto;
+}
+
+/* Mapeamento das áreas */
+header { grid-area: header; }
+main   { grid-area: main; }
+aside  { grid-area: aside; }
+footer { grid-area: footer; }
+
+/* Cabeçalho */
+header{
+  background: linear-gradient(180deg, #0f1a34, #0c162b);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px var(--shadow);
+  padding: 26px 22px;
+  text-align: center;
+}
+header h1{ margin-bottom: 10px; }
+
+/* 2) FLEX NA NAV → organizar links do menu */
+nav ul{
+  list-style: none;
+  display: flex;                 /* ← FLEX */
+  justify-content: center;       /* centraliza/espaça */
+  gap: 16px;                     /* espaço entre links */
+  flex-wrap: wrap;
+}
+nav a{
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+nav a:hover{
+  border-color: var(--accent);
+  background: rgba(96,165,250,.10);
+  color: var(--accent);
+}
+
+/* Article (card) */
+article{
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 36px var(--shadow);
+  padding: 26px 22px;
+}
+article h2{ color: var(--accent); margin-bottom: 10px; }
+article time{ font-size: 14px; color: var(--muted); display:inline-block; margin-bottom: 10px; }
+article p{ margin: 12px 0 16px; }
+figure img{ width:100%; border-radius: 10px; display:block; }
+
+/* Aside */
+aside{
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+aside h3{ color: var(--accent-2); margin-bottom: 10px; }
+aside a{ color: var(--ink); text-underline-offset: 3px; }
+aside a:hover{ color: var(--accent-2); }
+
+/* Footer */
+footer{
+  text-align:center;
+  color: var(--muted);
+  padding: 18px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #0e162b;
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+/* 3) MEDIA QUERY (≤768px) → vira 1 coluna e o ASIDE desce */
+@media (max-width: 768px){
+  body{
+    grid-template-columns: 1fr;              /* 1 coluna */
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "header"
+      "main"
+      "aside"    /* aside agora fica abaixo do main */
+      "footer";
+    gap: 16px;
+    padding: 20px 14px 30px;
+  }
+}
